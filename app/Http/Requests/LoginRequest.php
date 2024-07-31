@@ -19,9 +19,8 @@ class LoginRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         $response = response()->json([
-            'success'   => false,
             'message'   => 'Validation errors',
-            'data' => $validator->errors()
+            'errors' => $validator->errors()
         ], 422);
         throw new HttpResponseException($response);
     }
