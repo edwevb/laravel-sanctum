@@ -13,8 +13,11 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'slug' => $this->slug,
             'description' => $this->description,
-            'created_at' =>  $this->created_at->diffForHumans()
+            'image' => $this->image,
+            'created_at' =>  $this->created_at->diffForHumans(),
+            'updated_at' =>  $this->updated_at->diffForHumans(),
         ];
     }
 }
