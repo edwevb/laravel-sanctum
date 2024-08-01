@@ -15,9 +15,10 @@ class PostFactory extends Factory
         $title = fake()->sentence(2);
         return [
             'title' => rtrim($title, '.'),
+            'user_id' => fake()->numberBetween(1, 3),
             'description' => fake()->paragraphs(3, true),
             'slug' => Str::slug($title, '-'),
-            'active' => 1,
+            'active' => fake()->numberBetween(0, 1),
             'image' => 'default.jpg'
         ];
     }

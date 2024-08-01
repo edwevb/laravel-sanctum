@@ -7,9 +7,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PostResource extends JsonResource
 {
-
     public function toArray(Request $request): array
     {
+        JsonResource::withoutWrapping();
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -18,6 +18,7 @@ class PostResource extends JsonResource
             'image' => $this->image,
             'created_at' =>  $this->created_at->diffForHumans(),
             'updated_at' =>  $this->updated_at->diffForHumans(),
+            'author' => $this->whenLoaded('author')
         ];
     }
 }
