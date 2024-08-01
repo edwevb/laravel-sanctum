@@ -26,11 +26,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        try {
-            $post = Post::firstWhere('id', 'asdsd');
-        } catch (\Exception $th) {
-            return response()->json(['Error' => $th->getMessage()]);
-        }
+        return $post;
     }
 
     public function update(Request $request, Post $post)
