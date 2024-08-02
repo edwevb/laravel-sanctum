@@ -26,7 +26,7 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:100',
-            'slug' => 'nullable',
+            'slug' => 'nullable|string',
             'description' => 'required|string',
             'image' => 'nullable', File::image()->types(['jpg', 'jpeg', 'JPG', 'png', 'webp'])->max(2048),
             'published' => 'nullable|numeric|max:1|size:1',

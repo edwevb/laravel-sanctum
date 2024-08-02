@@ -27,6 +27,7 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
+        return $request;
         $input = $request->validated();
         try {
             Post::create($input);
@@ -49,7 +50,6 @@ class PostController extends Controller
             ))->additional([
                 'message' => 'Get data successfully'
             ])->response()->setStatusCode(200);
-
             return $response;
         } catch (\Exception $e) {
             return response()->json(['error' => [

@@ -28,7 +28,7 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:100',
-            'slug' => 'nullable',
+            'slug' => 'nullable|string',
             'description' => 'required|string',
             'image' => 'nullable', File::image()->types(['jpg', 'jpeg', 'JPG', 'png', 'webp'])->max(2048),
             'active' => 'nullable|numeric|max:1|size:1',

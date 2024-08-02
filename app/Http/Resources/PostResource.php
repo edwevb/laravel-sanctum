@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,8 +20,23 @@ class PostResource extends JsonResource
             'published' => $this->published ? true : false,
             'created_at' =>  $this->created_at->diffForHumans(),
             'updated_at' =>  $this->updated_at->diffForHumans(),
-            'author' => $this->whenLoaded('author')->only('id', 'name'),
-            'tags' => $this->whenLoaded('tags')->makeHidden('pivot')->map->only('id', 'slug', 'title')
+            'author' => new UserResource($this->whenLoaded('author')),
+            // 'tags' => $this->whenLoaded('tags', function ($tag) {
+            //     return $this->setTagCustomAttribute($tag);
+            // })
+            'tags' => TagResource::collection($this->whenLoaded('tags'))
         ];
+    }
+
+    protected function setTagCustomAttribute($tag)
+    {
+        $values = $tag->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'title' => $item->title,
+                'slug' => $item->slug
+            ];
+        });
+        return $values;
     }
 }

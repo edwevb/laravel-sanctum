@@ -19,7 +19,11 @@ class Post extends Model
         'image',
         'published'
     ];
-    protected $hidden = ['title', 'slug'];
+
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

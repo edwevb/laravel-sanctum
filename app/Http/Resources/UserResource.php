@@ -13,7 +13,8 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'created_at' =>  $this->created_at->diffForHumans()
+            'posts' => PostResource::collection($this->whenLoaded('posts')),
+            // 'created_at' =>  $this->created_at->diffForHumans()
         ];
     }
 }

@@ -9,6 +9,13 @@ class TagResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+        return [
+            'id' =>  $this->id,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'created_at' => $this->created_at->diffForHumans(),
+            'posts' => PostResource::collection($this->whenLoaded('posts'))
+        ];
     }
 }
