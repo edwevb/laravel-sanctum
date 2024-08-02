@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TagRequest;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -12,7 +12,7 @@ class TagController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(TagRequest $request)
     {
         //
     }
@@ -22,7 +22,7 @@ class TagController extends Controller
         //
     }
 
-    public function update(Request $request, Tag $tag)
+    public function update(TagRequest $request, Tag $tag)
     {
         //
     }

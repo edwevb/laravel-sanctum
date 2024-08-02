@@ -16,9 +16,11 @@ class PostResource extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'image' => $this->image,
+            'published' => $this->published ? true : false,
             'created_at' =>  $this->created_at->diffForHumans(),
             'updated_at' =>  $this->updated_at->diffForHumans(),
-            'author' => $this->whenLoaded('author')
+            'author' => $this->whenLoaded('author')->only('id', 'name'),
+            'tags' => $this->whenLoaded('tags')->makeHidden('pivot')->map->only('id', 'slug', 'title')
         ];
     }
 }

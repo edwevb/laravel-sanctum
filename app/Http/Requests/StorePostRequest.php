@@ -19,7 +19,7 @@ class StorePostRequest extends FormRequest
     {
         $this->merge([
             'slug' => Str::slug($this->title),
-            'active' => $this->active ?? 0,
+            'published' => $this->active ?? 0,
             'image' => $this->image ?? 'default.png',
         ]);
     }

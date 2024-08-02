@@ -14,12 +14,22 @@ class PostFactory extends Factory
     {
         $title = fake()->sentence(2);
         return [
-            'title' => rtrim($title, '.'),
+            'title' => Str::title(rtrim($title, '.')),
             'user_id' => fake()->numberBetween(1, 3),
             'description' => fake()->paragraphs(3, true),
             'slug' => Str::slug($title, '-'),
-            'active' => fake()->numberBetween(0, 1),
+            'published' => fake()->numberBetween(0, 1),
             'image' => 'default.jpg'
         ];
     }
+
+    // public function configure()
+    // {
+    //     return $this->afterCreating(function (\App\Models\Post $post) {
+    //         // Will create 3 tasks for each new post
+    //         \App\Models\Tag::factory()->count(3)->create([
+    //             'post_id' => $post->id,
+    //         ]);
+    //     });
+    // }
 }

@@ -12,7 +12,7 @@ class PostController extends Controller
     public function index()
     {
         try {
-            $posts = Post::with('author:id,name')->paginate(5);
+            $posts = Post::with(['author', 'tags'])->paginate(10);
             $response = PostResource::collection($posts)->additional([
                 'message' => 'Get data successfully'
             ])->response()->setStatusCode(200);
@@ -45,9 +45,7 @@ class PostController extends Controller
     {
         try {
             $response =  (new PostResource(
-                $post->loadMissing(['author' => function ($q) {
-                    $q->select('id', 'name');
-                }])
+                $post->loadMissing(['author', 'tags'])
             ))->additional([
                 'message' => 'Get data successfully'
             ])->response()->setStatusCode(200);
